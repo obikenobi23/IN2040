@@ -1,0 +1,42 @@
+(load "Prekode-endret.rkt")
+(set! the-global-environment (setup-environment))
+(read-eval-print-loop)
+
+;;1a
+;; Sjekk rammer
+
+;(define (foo cond else)
+;  (cond ((= cond 2) 0)
+;        (else (else cond))))
+
+;(define cond 3)
+;(define (else x) (/ x 2))
+
+;(define (square x) (* x x))
+
+;(foo 2 square)
+;(foo 4 square)
+;(cond ((= cond 2) 0)
+;      (else (else 4)))
+
+; Forslag: Siden cond ikke er definert i mc-evaluatoren,
+; vil kall på den legges i åpningsomgivelsen. Da vil rammene før
+; cond-uttrykket evalueres i setup-omgivelsen
+; mens cond og utenfor vil evalueres i åpningsomgivelsen.
+
+
+;; 2a
+; testes med (1+ 5) >>> 6
+
+;; 2b
+;
+
+;; 3a)
+
+;; 3b)
+; Korrekt syntaks:
+(if (null? '(1 2 3))
+    then 'null
+    elsif (zero? 1)
+    then 'zero
+    else 0)

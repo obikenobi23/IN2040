@@ -1,0 +1,9 @@
+;; Ikke prøv å forstå all prekoden!
+;; Overskriv prosedyrene fra prekoden
+
+(load "Prekode.rkt")
+
+;; Last inn REPL
+(read-eval-print-loop)
+
+;; Evaluer (+ 1 2)
