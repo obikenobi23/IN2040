@@ -1,0 +1,38 @@
+(load "Prekode.rkt")
+
+;; Oppgave 1
+(define (mem message proc)
+  (let ((table (make-table)))
+    (define (memoize proc)
+      (lambda x
+        (let ((previously-computed-result (lookup x table)))
+          (or previously-computed-result
+              (let ((result (apply proc x)))
+                (insert! x result table)
+                result)))))
+
+    (define (unmemoize proc)
+      (set! table (make-table))
+      (memoize proc)
+      )
+
+    
+    (cond ((eq? message 'memoize) (memoize proc))
+          ((eq? message 'unmemoize) (unmemoize proc))
+          (else "Did not recognize input -- MEMOIZE"))))
+
+(define fib (mem 'memoize fib))
+(fib 8)
+
+(define fib (mem 'unmemoize fib));; Glemmer ikke tidligere utregninger?
+;(define fib (mem 'memoize fib))
+(fib 8)
+
+(define test-proc (mem 'memoize test-proc))
+(test-proc 41 42 43)
+(set! test-proc (mem 'unmemoize test-proc))
+(test-proc 41 42 43)
+
+;; 2c
+
+;; 2d
